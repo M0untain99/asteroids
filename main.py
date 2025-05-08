@@ -11,16 +11,26 @@ def main():
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))  # Define the screen
     clock = pygame.time.Clock()  # Game Clock for controlling fps
     dt = 0  # Delta Time
-    player = Player((SCREEN_WIDTH / 2), (SCREEN_HEIGHT / 2))
+
+    updateable = pygame.sprite.Group()  # Create a group for all updateable entities
+    drawable = pygame.sprite.Group()  # Create a group for all drawable sprites
+
+    Player.containers = (updateable, drawable)  # Add the updateable and drawable containers to the Player class
+
+    player = Player((SCREEN_WIDTH / 2), (SCREEN_HEIGHT / 2))  # Create a player object
     
     while True:  # Initialise Game Loop
         for event in pygame.event.get():
             if event.type == pygame.QUIT:  # If the user closes the game
                 return  # Kill the game
 
-        player.update(dt)  # Update the position of the player
+        updateable.update(dt)  # Update all the entities in the updateable group
 
         screen.fill('black')  # Make the screen black
+
+        for sprite in drawable:  # For every drawable entity
+            sprite.draw(screen)  # Draw the entity
+
         player.draw(screen)  # Draw Player
         pygame.display.flip()  # Display the screen
         
