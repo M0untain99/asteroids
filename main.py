@@ -18,6 +18,8 @@ def main():
             if event.type == pygame.QUIT:  # If the user closes the game
                 return  # Kill the game
 
+        player.update(dt)  # Update the position of the player
+
         screen.fill('black')  # Make the screen black
         player.draw(screen)  # Draw Player
         pygame.display.flip()  # Display the screen
