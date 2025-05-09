@@ -32,7 +32,7 @@ class Player(CircleShape):
     # Shoot a shot
     def shoot(self):
 
-        shot = Shot(self.position[0], self.position[1], SHOT_RADIUS)  # Create a shot object (x, y, radius)
+        shot = Shot(self.position[0], self.position[1])  # Create a shot object (x, y, radius)
 
         start = pygame.Vector2(0, 1).rotate(self.rotation)  # Set the shots starting vector with rotation
         
