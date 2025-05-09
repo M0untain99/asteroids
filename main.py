@@ -1,4 +1,5 @@
 import pygame
+import sys
 from constants import *
 from player import Player
 from asteroid import Asteroid
@@ -31,6 +32,11 @@ def main():
                 return  # Kill the game
 
         updateable.update(dt)  # Update all the entities in the updateable group
+
+        for asteroid in asteroids:  # For every asteroid
+            if asteroid.collision_check(player):  # If it's collided with the player
+                print('Game over!')
+                sys.exit()  # Close the game
 
         screen.fill('black')  # Make the screen black
 
