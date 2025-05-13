@@ -22,7 +22,7 @@ def main():
     shots = pygame.sprite.Group()  # Create a group for all shots
 
     Player.containers = (updateable, drawable)  # Add the updateable and drawable containers to the Player class
-    Shot.containers = (updateable, drawable)  # Add the updateable and drawable containers to the Shot class
+    Shot.containers = (shots, updateable, drawable)  # Add the updateable and drawable containers to the Shot class
     Asteroid.containers = (asteroids, updateable, drawable)  # Add the containers to the Asteroid class
     AsteroidField.containers = (updateable)  # Add the updateable container to the AsteroidField class
 
@@ -40,6 +40,10 @@ def main():
             if asteroid.collision_check(player):  # If it's collided with the player
                 print('Game over!')
                 sys.exit()  # Close the game
+            for bullet in shots:  # For every bullet
+                if asteroid.collision_check(bullet):  # If the bullet has collided with the asteroid
+                    bullet.kill()  # Remove the bullet object
+                    asteroid.kill()  # Remove the asteroid object
 
         screen.fill('black')  # Make the screen black
 
