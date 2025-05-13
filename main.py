@@ -43,7 +43,7 @@ def main():
             for bullet in shots:  # For every bullet
                 if asteroid.collision_check(bullet):  # If the bullet has collided with the asteroid
                     bullet.kill()  # Remove the bullet object
-                    asteroid.kill()  # Remove the asteroid object
+                    asteroid.split()  # Remove the asteroid object
 
         screen.fill('black')  # Make the screen black
 
